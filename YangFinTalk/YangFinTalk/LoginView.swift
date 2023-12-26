@@ -3,19 +3,22 @@
 import SwiftUI
 import Firebase
 
-class FirebaseManager : NSObject{
+class FirebaseManager: NSObject {
     
-    let auth : Auth
+    let auth: Auth
+    
     
     static let shared = FirebaseManager()
     
-  override init() {
+    override init() {
         FirebaseApp.configure()
-      self.auth = Auth.auth()
-      
-      super.init()
-      
+        
+        self.auth = Auth.auth()
+    
+        
+        super.init()
     }
+    
 }
 
 struct LoginView: View {
@@ -24,9 +27,7 @@ struct LoginView: View {
     @State var email = ""
     @State var password = ""
     
-    init(){
-        FirebaseApp.configure()
-    }
+  
     
     var body: some View {
         NavigationView {
@@ -127,11 +128,15 @@ struct LoginView: View {
             
             self.loginStatusMessage = "Successfully created user : \(result?.user.uid ?? "")"
             
+            
+            
            
         }
     }
     
 }
+
+
 
 struct ContentView_previews1: PreviewProvider{
     static var previews: some View{
