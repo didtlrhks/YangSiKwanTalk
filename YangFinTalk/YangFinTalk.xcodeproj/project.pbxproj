@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E5185AC2B3C850E00EFC419 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5185AB2B3C850E00EFC419 /* MainMessagesView.swift */; };
 		8E8D584B2B39C55C00BEFB64 /* YangFinTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D584A2B39C55C00BEFB64 /* YangFinTalkApp.swift */; };
 		8E8D584D2B39C55C00BEFB64 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D584C2B39C55C00BEFB64 /* LoginView.swift */; };
 		8E8D584F2B39C55E00BEFB64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8E8D584E2B39C55E00BEFB64 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E5185AB2B3C850E00EFC419 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		8E8D58472B39C55C00BEFB64 /* YangFinTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YangFinTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E8D584A2B39C55C00BEFB64 /* YangFinTalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YangFinTalkApp.swift; sourceTree = "<group>"; };
 		8E8D584C2B39C55C00BEFB64 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				8E8D584E2B39C55E00BEFB64 /* Assets.xcassets */,
 				8E8D58502B39C55E00BEFB64 /* Preview Content */,
 				8E8D58952B3C066000BEFB64 /* ImagePicker.swift */,
+				8E5185AB2B3C850E00EFC419 /* MainMessagesView.swift */,
 			);
 			path = YangFinTalk;
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8E8D58962B3C066000BEFB64 /* ImagePicker.swift in Sources */,
+				8E5185AC2B3C850E00EFC419 /* MainMessagesView.swift in Sources */,
 				8E8D584D2B39C55C00BEFB64 /* LoginView.swift in Sources */,
 				8E8D584B2B39C55C00BEFB64 /* YangFinTalkApp.swift in Sources */,
 			);
