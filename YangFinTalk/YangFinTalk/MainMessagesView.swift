@@ -18,6 +18,14 @@ class MainMessagesViewModel : ObservableObject {
         guard let uid =
         FirebaseManager.shared.auth
             .currentUser?.uid else {return}
+        
+        FirebaseManager.shared.firestore.collection("users")
+            .document(uid).getDocument {
+                snapshot, error in
+                if let error = error{
+                    print("Failed to fetch current ")
+                }
+            }
     }
     
 }
