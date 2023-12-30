@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8E4577412B3EC4BD00CD8251 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8E4577402B3EC4BD00CD8251 /* SDWebImageSwiftUI */; };
+		8E4577442B4007BC00CD8251 /* ChatUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E4577432B4007BC00CD8251 /* ChatUser.swift */; };
 		8E5185AC2B3C850E00EFC419 /* MainMessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5185AB2B3C850E00EFC419 /* MainMessagesView.swift */; };
 		8E5186092B3D6FEB00EFC419 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E5186082B3D6FEB00EFC419 /* FirebaseManager.swift */; };
 		8E8D584B2B39C55C00BEFB64 /* YangFinTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E8D584A2B39C55C00BEFB64 /* YangFinTalkApp.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8E4577432B4007BC00CD8251 /* ChatUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUser.swift; sourceTree = "<group>"; };
 		8E5185AB2B3C850E00EFC419 /* MainMessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMessagesView.swift; sourceTree = "<group>"; };
 		8E5186082B3D6FEB00EFC419 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		8E8D58472B39C55C00BEFB64 /* YangFinTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YangFinTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E4577422B4007AD00CD8251 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8E4577432B4007BC00CD8251 /* ChatUser.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8E5186072B3D6FD800EFC419 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		8E8D58492B39C55C00BEFB64 /* YangFinTalk */ = {
 			isa = PBXGroup;
 			children = (
+				8E4577422B4007AD00CD8251 /* Model */,
 				8E5186072B3D6FD800EFC419 /* Utils */,
 				8E8D584A2B39C55C00BEFB64 /* YangFinTalkApp.swift */,
 				8E8D584C2B39C55C00BEFB64 /* LoginView.swift */,
@@ -248,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E4577442B4007BC00CD8251 /* ChatUser.swift in Sources */,
 				8E8D58962B3C066000BEFB64 /* ImagePicker.swift in Sources */,
 				8E5185AC2B3C850E00EFC419 /* MainMessagesView.swift in Sources */,
 				8E5186092B3D6FEB00EFC419 /* FirebaseManager.swift in Sources */,

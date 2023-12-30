@@ -9,57 +9,52 @@ import Foundation
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct ChatUser {
-    let uid, email,profileImageUrl : String
-    
-}
 
-class MainMessagesViewModel : ObservableObject {
+import SwiftUI
+import SDWebImageSwiftUI
+
+class MainMessagesViewModel: ObservableObject {
     
     @Published var errorMessage = ""
-    @Published var chatUser : ChatUser?
+    @Published var chatUser: ChatUser?
     
     init() {
-        fetchCurrentUser()
         
+        DispatchQueue.main.async {
+            self.isUserCurrentlyLoggedOut = FirebaseManager.shared.auth.currentUser?.uid == nil
+        }
+        
+        fetchCurrentUser()
     }
-    private func fetchCurrentUser() {
-       
-        guard let uid =
-        FirebaseManager.shared.auth
-            .currentUser?.uid else {
+    
+    func fetchCurrentUser() {
+        guard let uid = FirebaseManager.shared.auth.currentUser?.uid else {
             self.errorMessage = "Could not find firebase uid"
             return
         }
-     
         
-        FirebaseManager.shared.firestore.collection("users")
-            .document(uid).getDocument {
-                snapshot, error in
-                if let error = error{
-                    self.errorMessage = "Failed to fetch current user:\(error)"
-                    print("Failed to fetch current user:" , error)
-                    return
-                }
-                
-                self.errorMessage = "123"
-                
-                guard let data = snapshot?.data() else{
-                    self.errorMessage = "No data found"
-                    return
-                }
-//                print(data)
-                
-              //  self.errorMessage = "Data : \(data.description)"
-                
-                let uid = data["uid"] as? String ?? ""
-                let email = data["email"] as? String ?? ""
-                let profileImageUrl = data["profileImageUrl"] as? String ?? ""
-                self.chatUser = ChatUser(uid: uid, email: email, profileImageUrl: profileImageUrl)
-                
-               // self.errorMessage = chatUser.profileImageUrl
+        FirebaseManager.shared.firestore.collection("users").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                self.errorMessage = "Failed to fetch current user: \(error)"
+                print("Failed to fetch current user:", error)
+                return
+            }
+            
+            guard let data = snapshot?.data() else {
+                self.errorMessage = "No data found"
+                return
                 
             }
+            
+            self.chatUser = .init(data: data)
+        }
+    }
+    
+    @Published var isUserCurrentlyLoggedOut = false
+    
+    func handleSignOut() {
+        isUserCurrentlyLoggedOut.toggle()
+        try? FirebaseManager.shared.auth.signOut()
     }
     
 }
@@ -74,8 +69,8 @@ struct MainMessagesView: View {
         NavigationView {
             
             VStack {
+//                Text("User: \(vm.chatUser?.uid ?? "")")
                 
-              //  Text("User: \(vm.chatUser?.uid ?? "")")
                 customNavBar
                 messagesView
             }
@@ -88,24 +83,22 @@ struct MainMessagesView: View {
     private var customNavBar: some View {
         HStack(spacing: 16) {
             
-            WebImage(url : URL(string: vm.chatUser?.profileImageUrl ?? ""))
+            WebImage(url: URL(string: vm.chatUser?.profileImageUrl ?? ""))
                 .resizable()
                 .scaledToFill()
-                .frame(width: 50,height:  50)
+                .frame(width: 50, height: 50)
                 .clipped()
                 .cornerRadius(50)
-                .overlay(RoundedRectangle(cornerRadius : 44)
-                    .stroke(Color(.label),
-                           lineWidth:  1
-                           )
+                .overlay(RoundedRectangle(cornerRadius: 44)
+                            .stroke(Color(.label), lineWidth: 1)
                 )
                 .shadow(radius: 5)
-
+            
             
             VStack(alignment: .leading, spacing: 4) {
-                           let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
-                           Text(email)
-                               .font(.system(size: 24, weight: .bold))
+                let email = vm.chatUser?.email.replacingOccurrences(of: "@gmail.com", with: "") ?? ""
+                Text(email)
+                    .font(.system(size: 24, weight: .bold))
                 
                 HStack {
                     Circle()
@@ -132,13 +125,18 @@ struct MainMessagesView: View {
             .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
                 .destructive(Text("Sign Out"), action: {
                     print("handle sign out")
+                    vm.handleSignOut()
                 }),
                     .cancel()
             ])
         }
+        .fullScreenCover(isPresented: $vm.isUserCurrentlyLoggedOut, onDismiss: nil) {
+            LoginView(didCompleteLoginProcess: {
+                self.vm.isUserCurrentlyLoggedOut = false
+                self.vm.fetchCurrentUser()
+            })
+        }
     }
-    
-
     
     private var messagesView: some View {
         ScrollView {
@@ -193,8 +191,11 @@ struct MainMessagesView: View {
     }
 }
 
-struct MainMessagesView_previews: PreviewProvider{
-    static var previews : some View{
+struct MainMessagesView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainMessagesView()
+            .preferredColorScheme(.dark)
+        
         MainMessagesView()
     }
 }
