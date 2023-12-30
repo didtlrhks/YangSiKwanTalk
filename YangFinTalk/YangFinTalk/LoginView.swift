@@ -51,7 +51,7 @@ struct LoginView: View {
                                 }
                             }
                             .overlay(RoundedRectangle(cornerRadius: 64)
-                                        .stroke(Color.black, lineWidth: 3)
+                                        .stroke(Color.white, lineWidth: 3)
                             )
                             
                         }

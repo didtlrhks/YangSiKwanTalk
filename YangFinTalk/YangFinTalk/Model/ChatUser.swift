@@ -3,11 +3,14 @@
 //  YangFinTalk
 //
 //  Created by 양시관 on 12/30/23.
-//
+
 
 import Foundation
 
-struct ChatUser {
+struct ChatUser: Identifiable {
+    
+    var id : String{ uid }
+    
     let uid, email, profileImageUrl: String
     
     init(data: [String: Any]) {
@@ -16,3 +19,5 @@ struct ChatUser {
         self.profileImageUrl = data["profileImageUrl"] as? String ?? ""
     }
 }
+
+
